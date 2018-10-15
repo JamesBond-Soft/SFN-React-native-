@@ -1,0 +1,74 @@
+{
+    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:flowtype/recommended"],
+    "globals": {
+        "__DEV__": true,
+        "fetch": true,
+        "requestAnimationFrame": true,
+        "cancelAnimationFrame": true,
+        "navigator": true
+    },
+    "ecmaFeatures": {
+        "jsx": true,
+        "modules": true
+    },
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "allowImportExportEverywhere": false,
+        "ecmaFeatures": {
+            "jsx": true,
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "rules": {
+        "max-len": [2, 120, 4],
+        "semi": [2, "never"],
+        "quotes": [
+            2,
+            "single",
+            {
+                "avoidEscape": true
+            }
+        ],
+        "jsx-quotes": [2, "prefer-single"],
+        "strict": [2, "never"],
+        "generator-star-spacing": [2, "after"],
+        "object-shorthand": [2, "always"],
+        "arrow-parens": [2, "always"],
+        "indent": [2, 4],
+        "object-curly-spacing": [
+            2,
+            "always",
+            {
+                "arraysInObjects": false,
+                "objectsInObjects": false
+            }
+        ],
+        "array-bracket-spacing": [
+            2,
+            "always",
+            {
+                "singleValue": false,
+                "objectsInArrays": false,
+                "arraysInArrays": false
+            }
+        ],
+        "no-console": 0,
+        "babel/new-cap": 2,
+        "no-await-in-loop": 2,
+        "prefer-template": 2,
+        "no-trailing-spaces": 2,
+        "react/jsx-uses-react": 2,
+        "react/jsx-uses-vars": 2,
+        "react/react-in-jsx-scope": 2,
+        "react/jsx-closing-bracket-location": [1, "after-props"],
+        "react/jsx-no-bind": 2,
+        "flowtype/define-flow-type": 2
+    },
+    "plugins": ["babel", "react", "flowtype"]
+}

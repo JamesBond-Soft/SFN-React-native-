@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" creator="mapstogpx.com" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd">
+  <metadata>
+    <link href="http://www.mapstogpx.com">
+      <text>Sverrir Sigmundarson</text>
+    </link>
+    <!--desc>Map data ©2017 Google</desc-->
+    <!--copyright author="Google Inc">
+    	<year>2017</year>
+    	<license>https://developers.google.com/maps/terms</license>
+    </copyright-->
+    <!--url>https://www.google.co.uk/maps/dir/37.4022259,-121.9875138/37.404867,-121.988813/@37.4038838,-121.9886757,17.78z/data=!4m2!4m1!3e2?hl=en</url-->
+    <time>2017-04-24T15:40:53Z</time>
+  </metadata>
+  <wpt lat="37.4022259" lon="-121.9875138">
+    <name>Sunnyvale</name>
+    <desc>75 Adobe Wells St, Sunnyvale, CA 94089, USA</desc>
+  </wpt>
+  <wpt lat="37.404867" lon="-121.988813">
+    <name>Sunnyvale</name>
+    <desc>1243 Reamwood Ave, Sunnyvale, CA 94089, USA</desc>
+  </wpt>
+<trk>
+  <name>Sunnyvale to Sunnyvale</name>
+  <number>1</number>
+  <trkseg>
+  <trkpt lat="37.4022259" lon="-121.9875138">
+    <name>TP001</name>
+  </trkpt>
+  <trkpt lat="37.40234" lon="-121.98758">
+    <name>TP002</name>
+  </trkpt>
+  <trkpt lat="37.40242" lon="-121.98764">
+    <name>TP003</name>
+  </trkpt>
+  <trkpt lat="37.4025" lon="-121.9877">
+    <name>TP004</name>
+  </trkpt>
+  <trkpt lat="37.40253" lon="-121.98772">
+    <name>TP005</name>
+  </trkpt>
+  <trkpt lat="37.40256" lon="-121.98775">
+    <name>TP006</name>
+  </trkpt>
+  <trkpt lat="37.40263" lon="-121.98782">
+    <name>TP007</name>
+  </trkpt>
+  <trkpt lat="37.40266" lon="-121.98786">
+    <name>TP008</name>
+  </trkpt>
+  <trkpt lat="37.40269" lon="-121.9879">
+    <name>TP009</name>
+  </trkpt>
+  <trkpt lat="37.40273" lon="-121.98795">
+    <name>TP010</name>
+  </trkpt>
+  <trkpt lat="37.40276" lon="-121.98799">
+    <name>TP011</name>
+  </trkpt>
+  <trkpt lat="37.40281" lon="-121.98805">
+    <name>TP012</name>
+  </trkpt>
+  <trkpt lat="37.40284" lon="-121.9881">
+    <name>TP013</name>
+  </trkpt>
+  <trkpt lat="37.40291" lon="-121.98822">
+    <name>TP014</name>
+  </trkpt>
+  <trkpt lat="37.40297" lon="-121.98837">
+    <name>TP015</name>
+  </trkpt>
+  <trkpt lat="37.40305" lon="-121.98861">
+    <name>TP016</name>
+  </trkpt>
+  <trkpt lat="37.4030531" lon="-121.9886057">
+    <name>TP017</name>
+  </trkpt>
+  <trkpt lat="37.40317" lon="-121.98857">
+    <name>TP018</name>
+  </trkpt>
+  <trkpt lat="37.40321" lon="-121.98856">
+    <name>TP019</name>
+  </trkpt>
+  <trkpt lat="37.40325" lon="-121.98855">
+    <name>TP020</name>
+  </trkpt>
+  <trkpt lat="37.40328" lon="-121.98855">
+    <name>TP021</name>
+  </trkpt>
+  <trkpt lat="37.40335" lon="-121.98855">
+    <name>TP022</name>
+  </trkpt>
+  <trkpt lat="37.40346" lon="-121.98855">
+    <name>TP023</name>
+  </trkpt>
+  <trkpt lat="37.4034578" lon="-121.9885473">
+    <name>TP024</name>
+  </trkpt>
+  <trkpt lat="37.4035" lon="-121.98855">
+    <name>TP025</name>
+  </trkpt>
+  <trkpt lat="37.40358" lon="-121.98855">
+    <name>TP026</name>
+  </trkpt>
+  <trkpt lat="37.40365" lon="-121.98855">
+    <name>TP027</name>
+  </trkpt>
+  <trkpt lat="37.4039" lon="-121.98856">
+    <name>TP028</name>
+  </trkpt>
+  <trkpt lat="37.40402" lon="-121.98856">
+    <name>TP029</name>
+  </trkpt>
+  <trkpt lat="37.40455" lon="-121.98856">
+    <name>TP030</name>
+  </trkpt>
+  <trkpt lat="37.40487" lon="-121.98856">
+    <name>TP031</name>
+  </trkpt>
+  <trkpt lat="37.4048667" lon="-121.988563">
+    <name>TP032</name>
+  </trkpt>
+  </trkseg>
+</trk>
+</gpx>

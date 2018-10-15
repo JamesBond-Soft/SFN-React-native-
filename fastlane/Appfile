@@ -1,0 +1,6 @@
+app_identifier "com.socialfitnessnetwork.SFN" # The bundle identifier of your app
+apple_id "jgrant.ber@gmail.com" # Your Apple email address
+team_id "PF73ZXQCX8" # Developer Portal Team ID
+
+# you can even provide different app identifiers, Apple IDs and team names per lane:
+# More information: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Appfile.md

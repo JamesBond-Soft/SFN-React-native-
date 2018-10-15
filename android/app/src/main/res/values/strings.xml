@@ -1,0 +1,14 @@
+<resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey"></string>
+    <string name="app_name">SFN</string>
+    <string name="gf_ntfcn_ticker">Let us check you in to %s</string>
+    <string name="gf_ntfcn_title">SFN Check In</string>
+    <string name="gf_ntfcn_text">Check-in to %s?</string>
+    <string name="auth_fail_ticker">Log back into SFN</string>
+    <string name="auth_fail_title">SFN Session Expired</string>
+    <string name="auth_fail_text">Login to check in</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="facebook_app_id">156435014900677</string>
+    <string name="fb_login_protocol_scheme">fb156435014900677</string>
+</resources>

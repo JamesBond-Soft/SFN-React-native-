@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" creator="mapstogpx.com" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd">
+  <metadata>
+    <link href="http://www.mapstogpx.com">
+      <text>Sverrir Sigmundarson</text>
+    </link>
+    <!--desc>Map data ©2017 Google</desc-->
+    <!--copyright author="Google Inc">
+    	<year>2017</year>
+    	<license>https://developers.google.com/maps/terms</license>
+    </copyright-->
+    <!--url>https://www.google.co.uk/maps/dir/37.198473,-121.7350597/Santa Teresa Blvd, San Jose, CA 95141/@37.201174,-121.7385797,17z/am=t/data=!3m1!4b1!4m8!4m7!1m0!1m5!1m1!1s0x808e25f307487ba3:0x385e4a00da202e2!2m2!1d-121.7395779!2d37.2038732?hl=en</url-->
+    <time>2017-04-24T15:25:23Z</time>
+  </metadata>
+  <wpt lat="37.198473" lon="-121.7350597">
+    <name>San Jose</name>
+    <desc>8820 Santa Teresa Blvd, San Jose, CA 95141, USA</desc>
+  </wpt>
+  <wpt lat="37.2038732" lon="-121.7395779">
+    <name>Santa Teresa Blvd</name>
+    <desc>Santa Teresa Blvd, San Jose, CA 95141, USA</desc>
+  </wpt>
+<trk>
+  <name>San Jose to Santa Teresa Blvd</name>
+  <number>1</number>
+  <trkseg>
+  <trkpt lat="37.19965" lon="-121.7354">
+    <name>TP011</name>
+  </trkpt>
+  <trkpt lat="37.19981" lon="-121.73548">
+    <name>TP012</name>
+  </trkpt>
+  <trkpt lat="37.19996" lon="-121.73557">
+    <name>TP013</name>
+  </trkpt>
+  <trkpt lat="37.20014" lon="-121.73568">
+    <name>TP014</name>
+  </trkpt>
+  <trkpt lat="37.20039" lon="-121.73584">
+    <name>TP015</name>
+  </trkpt>
+  <trkpt lat="37.20045" lon="-121.73588">
+    <name>TP016</name>
+  </trkpt>
+  <trkpt lat="37.20051" lon="-121.73592">
+    <name>TP017</name>
+  </trkpt>
+  <trkpt lat="37.2005064" lon="-121.7359209">
+    <name>TP018</name>
+  </trkpt>
+  <trkpt lat="37.20085" lon="-121.7363">
+    <name>TP019</name>
+  </trkpt>
+  <trkpt lat="37.20103" lon="-121.73647">
+    <name>TP020</name>
+  </trkpt>
+  <trkpt lat="37.20111" lon="-121.73654">
+    <name>TP021</name>
+  </trkpt>
+  <trkpt lat="37.20138" lon="-121.73688">
+    <name>TP022</name>
+  </trkpt>
+  <trkpt lat="37.20155" lon="-121.73707">
+    <name>TP023</name>
+  </trkpt>
+  <trkpt lat="37.20171" lon="-121.73728">
+    <name>TP024</name>
+  </trkpt>
+  </trkseg>
+</trk>
+</gpx>

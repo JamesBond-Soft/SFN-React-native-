@@ -1,0 +1,235 @@
+# Customise this file, documentation can be found here:
+# https://docs.fastlane.tools/actions/
+# All available actions: https://docs.fastlane.tools/actions
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version '2.62.1'
+default_platform :ios
+app_version = '1.2.6'
+
+def slack_send(message)
+  slack({
+    message: message,
+    channel: '#general',
+    success: true,
+    default_payloads: [:lane, :git_branch, :git_author],
+    slack_url: 'https://hooks.slack.com/services/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',
+    payload: {
+      'Build Date' => Time.new.to_s,
+      'By' => 'JB'
+    }
+  })
+end
+
+def codepush_android(version:, env:)
+  "appcenter codepush release -a jgrant.ber/sfn-android -c ../android/app/src/main/assets -t #{version} -d #{env} --mandatory"
+end
+
+def codepush_ios(version:, env:)
+  "cd .. && appcenter codepush release-react -a jgrant.ber/sfn-ios -t #{version} -d #{env} -p ios/SocialFitnessNetwork/Info.plist --mandatory && cd -"
+end
+
+platform :ios do
+  base_gym = {
+      scheme: 'SocialFitnessNetwork',
+      project: './ios/SocialFitnessNetwork.xcodeproj',
+      export_options: {
+        method: 'app-store',
+        provisioningProfiles: {
+          'SocialFitnessNetwork' => 'com.socialfitnessnetwork.SFN AppStore'
+        }
+      }
+  }
+
+  before_all do
+    # TODO Uncomment
+    # ensure_git_branch(branch: 'master')
+
+    # TODO Add slack notifications
+    # ENV['SLACK_URL'] = 'https://hooks.slack.com/services/...'
+    carthage(project_directory: './ios', cache_builds: true)
+  end
+
+  desc 'iOS codesign certificates'
+  lane :certs do
+    # TODO
+    # We are not setup for match yet
+    # match(type: 'appstore') # more information: https://codesigning.guide
+    cert(
+      username: 'jgrant.ber@gmail.com',
+      team_id: 'PF73ZXQCX8',
+      team_name: 'Smash Gyms Evergreen, Inc'
+    )
+    sigh(
+      force: false,
+      provisioning_name: 'com.socialfitnessnetwork.SFN AppStore'
+    )
+  end
+
+  desc 'Build and deploy iOS react-native code via CodePush to staging'
+  lane :code_push_stg do
+    ENV['ENVFILE'] = '.env.staging'
+    # TODO Capture and use the iOS versionName here
+    sh(codepush_ios(version: app_version, env: 'Staging'))
+    slack_send("OTA Release to iOS - #{app_version} Staging")
+  end
+
+  # Note: Typically you'd promote a bundle from Staging -> Production using `code-push promote`,
+  # but in our app we use separate configs for each environment, so they must each have a separate
+  # build + release process
+  desc 'Build and deploy iOS react-native code via CodePush to production'
+  lane :code_push_prod do
+    ENV['ENVFILE'] = '.env.production'
+    # TODO Capture and use the iOS versionName here
+    sh(codepush_ios(version: app_version, env: 'Production'))
+    slack_send("OTA Release to iOS - #{app_version} Production")
+  end
+
+  desc 'Build the iOS application (staging)'
+  private_lane :build_stg do
+    ENV['ENVFILE'] = '.env.staging'
+    certs
+    increment_build_number(xcodeproj: './ios/SocialFitnessNetwork.xcodeproj')
+    gym(base_gym.merge({ configuration: 'Staging', clean: true }))
+  end
+
+  desc 'Build the iOS application (production)'
+  private_lane :build do
+    ENV['ENVFILE'] = '.env.production'
+    certs
+    increment_build_number(xcodeproj: './ios/SocialFitnessNetwork.xcodeproj')
+    gym(base_gym.merge({ configuration: 'Release', clean: true }))
+  end
+
+  desc 'Runs all the tests'
+  lane :test do
+    scan
+  end
+
+  desc 'Ship to Testflight'
+  lane :beta do
+    build_stg
+    # TOOO Uncomment
+    # commit_version_bump(message: 'Bump build', xcodeproj: './ios/SocialFitnessNetwork.xcodeproj')
+    # push_to_git_remote
+    pilot#(wait_for_uploaded_build: true)
+    # sh 'your_script.sh'
+    # You can also use other beta testing services here (run `fastlane actions`)
+    slack_send('Deployed to iOS TestFlight')
+  end
+
+  desc 'Ship to Testflight (Release Promotion Build)'
+  lane :beta_prod do
+    build
+    # TOOO Uncomment
+    # commit_version_bump(message: 'Bump build', xcodeproj: './ios/SocialFitnessNetwork.xcodeproj')
+    # push_to_git_remote
+    pilot#(wait_for_uploaded_build: true)
+    # sh 'your_script.sh'
+    # You can also use other beta testing services here (run `fastlane actions`)
+    slack_send('Deployed to iOS TestFlight (Release Promotion Build)')
+  end
+
+  desc 'Deploy a new version to the App Store'
+  lane :release do
+    # match(type: 'appstore')
+    # snapshot
+    build
+    deliver(force: true)
+    # frameit
+  end
+
+  # You can define as many lanes as you want
+
+  after_all do |lane|
+    ENV['ENVFILE'] = ''
+  end
+
+  error do |lane, exception|
+    ENV['ENVFILE'] = ''
+  end
+end
+
+# Android things
+platform :android do
+  desc 'Build the Android application'
+  base_supply = {
+      package_name: 'com.socialfitnessnetwork',
+      json_key: '../sfn-conf/android/gpad-288e9ada542d.json'
+  }
+
+  desc 'Build and deploy Android react-native code via CodePush to staging'
+  lane :code_push_stg do
+    ENV['ENVFILE'] = '.env.staging'
+    sh('yarn androidBundle')
+    # TODO Capture the gradle app versionName here
+    sh(codepush_android(version: app_version, env: 'Staging'))
+    slack_send("OTA Release to Android - #{app_version} Staging")
+  end
+
+  # Note: Typically you'd promote a bundle from Staging -> Production using `code-push promote`,
+  # but in our app we use separate configs for each environment, so they must each have a separate
+  # build + release process
+  desc 'Build and deploy Android react-native code via CodePush to production'
+  lane :code_push_prod do
+    ENV['ENVFILE'] = '.env.production'
+    sh('yarn androidBundle')
+    # TODO Capture the gradle app versionName here
+    sh(codepush_android(version: app_version, env: 'Production'))
+    slack_send("OTA Release to Android - #{app_version} Production")
+  end
+
+  lane :build_stg do
+    ENV['ENVFILE'] = '.env.staging'
+    gradle(task: 'clean', project_dir: 'android/')
+    sh('yarn androidBundle')
+    gradle(task: 'assemble', build_type: 'staging', project_dir: 'android/')
+  end
+
+  private_lane :build do
+    ENV['ENVFILE'] = '.env.production'
+    gradle(task: 'clean', project_dir: 'android/')
+    sh('yarn androidBundle')
+    gradle(task: 'assemble', build_type: 'release', project_dir: 'android/')
+  end
+
+  desc 'Ship to Playstore Beta'
+  lane :beta do
+    build_stg
+    # git_commit(path: ['./android/gradle.properties'], message: 'Bump versionCode')
+    # push_to_git_remote
+    supply(base_supply.merge({ track: 'beta', track_promote_to: 'beta' }))
+    slack_send('Deployed to Google Play Beta')
+  end
+
+  desc 'Ship to Playstore Beta (Release Promotion Build)'
+  lane :beta_prod do
+    build
+    # git_commit(path: ['./android/gradle.properties'], message: 'Bump versionCode')
+    # push_to_git_remote
+    supply(base_supply.merge({ track: 'beta', track_promote_to: 'beta' }))
+    slack_send('Deployed to Google Play Beta (Release Promotion Build)')
+  end
+
+  after_all do |lane|
+    ENV['ENVFILE'] = ''
+  end
+
+  error do |lane, exception|
+    ENV['ENVFILE'] = ''
+  end
+end
+
+# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
+# All available actions: https://docs.fastlane.tools/actions
+
+# fastlane reports which actions are used. No personal data is recorded. 
+# Learn more at https://github.com/fastlane/fastlane#metrics

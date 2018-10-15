@@ -1,0 +1,5 @@
+.vscode
+**/build/**
+flow/*
+flow-typed/**
+vendor/**

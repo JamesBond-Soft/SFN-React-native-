@@ -1,0 +1,53 @@
+<manifest 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.socialfitnessnetwork"
+    android:versionCode="1"
+    android:versionName="1.0"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- TODO Add this back if re-enabling background geolocation support #350 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" tools:node="remove"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="22" />
+    <application android:name=".MainApplication" android:allowBackup="true" android:label="@string/app_name" android:icon="@mipmap/icon" android:theme="@style/AppTheme">
+        <!-- FBSDK stuff -->
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <activity android:name="com.facebook.FacebookActivity" android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/app_name" />
+        <activity android:name="com.facebook.CustomTabActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        <!-- End FBSDK -->
+        <activity android:name=".MainActivity" android:label="@string/app_name" android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:screenOrientation="sensorPortrait" android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="sfn" android:host="sfn" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+        <!-- Custom BG Geo handling -->
+        <service android:name="com.socialfitnessnetwork.android.MaybeNotifyService" />
+        <service android:name="com.socialfitnessnetwork.android.NotifyClickService" />
+        <receiver android:name="com.socialfitnessnetwork.android.BootstrapService">
+            <intent-filter>
+                <action android:name="com.transistorsoft.locationmanager.event.BOOT" />
+                <action android:name="com.transistorsoft.locationmanager.event.GEOFENCE" />
+            </intent-filter>
+            <!--<application><receiver android:name="com.transistorsoft.rnbackgroundgeolocation.RNBackgroundGeolocationEventReceiver"><intent-filter><action android:name="com.transistorsoft.locationmanager.event.BOOT" /><action android:name="com.transistorsoft.locationmanager.event.TERMINATE" /><action android:name="com.transistorsoft.locationmanager.event.HEARTBEAT" /><action android:name="com.transistorsoft.locationmanager.event.MOTIONCHANGE" /><action android:name="com.transistorsoft.locationmanager.event.LOCATION" /><action android:name="com.transistorsoft.locationmanager.event.GEOFENCE" /><action android:name="com.transistorsoft.locationmanager.event.HTTP" /><action android:name="com.transistorsoft.locationmanager.event.SCHEDULE" /><action android:name="com.transistorsoft.locationmanager.event.ACTIVITYCHANGE" /><action android:name="com.transistorsoft.locationmanager.event.PROVIDERCHANGE" /><action android:name="com.transistorsoft.locationmanager.event.GEOFENCESCHANGE" /></intent-filter></receiver></application>-->
+        </receiver>
+        <meta-data android:name="com.transistorsoft.locationmanager.license" android:value="3340096d68937f9f9b8b9cb5f60a364d6c05f9b26a0d36336f50fa61fbe729c3" />
+    </application>
+</manifest>

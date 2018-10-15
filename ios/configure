@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+# iOS only - Configure using .env.{ENV} files during build
+if [ $CONFIGURATION == "Release" ]
+then
+  echo ".env.production" > /tmp/envfile
+elif [ $CONFIGURATION == "Staging" ]
+then
+  echo ".env.staging" > /tmp/envfile
+else
+  echo ".env.development" > /tmp/envfile
+fi

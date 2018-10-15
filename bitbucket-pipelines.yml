@@ -1,0 +1,23 @@
+# This is a sample build configuration for Javascript.
+# Check our guides at https://confluence.atlassian.com/x/VYk8Lw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+
+# This docker image uses react 6.10.1 and only builds for android since docker is Linux based
+image: ground5hark/sfn-mobile:latest
+
+pipelines:
+  default:
+    - step:
+        script: # Modify the commands below to build your repository.
+          - yarn install
+          - yarn lintAll
+          # TODO Soon
+          #- yarn run test
+          - yarn flow -- --show-all-errors
+          # TODO
+          #- yarn androidBundle
+          #- build staging
+          #- build iOS
+          - ./android/gradlew build
